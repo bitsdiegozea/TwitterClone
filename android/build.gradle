@@ -4,10 +4,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 buildscript {
     ext {
-        buildToolsVersion = '31.0.0'
         minSdkVersion = 21
         compileSdkVersion = 31
         targetSdkVersion = 31
+        //TODO: this is a for error
+        // Module was compiled with an incompatible version of Kotlin. The binary version of its metadata is 1.6.0, expected version is 1.4.0.
+        kotlinVersion = '1.5.31'
 
         if (System.properties['os.arch'] == 'aarch64') {
             // For M1 Users we need to use the NDK 24 which added support for aarch64

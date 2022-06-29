@@ -1,13 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const Header = () => {
   return (
     <View style={styles.headerContainer}>
       <Image style={styles.avatar} source={require('../assets/avatar1.png')} />
       <Image style={styles.logos} source={require('../assets/twitter.png')} />
-      <Icon style={styles.logos} name="flare" size={30} color="#fff" />
+      <Image
+        style={{...styles.logos, width: 25, height: 25}}
+        source={require('../assets/icons/sparkle.png')}
+      />
     </View>
   );
 };

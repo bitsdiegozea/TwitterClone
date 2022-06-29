@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {IconFooter} from '../pages/tweets/components/IconFooter';
@@ -43,48 +43,50 @@ export const Tweet: React.FC<TweetProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.avatarContainer}>
-        <Image style={styles.avatar} source={avatar} />
-      </View>
-
-      <View style={styles.tweetContent}>
-        {username && (
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.title}>{username}</Text>
-            <Text style={styles.titleAt}> @{username.toLowerCase()}</Text>
-            <Text style={styles.titleAt}> {timeElapsed}</Text>
-          </View>
-        )}
-        {tweetContentText && (
-          <Text style={styles.tweetContent}>{tweetContentText}</Text>
-        )}
-        {image && (
-          <Image
-            style={styles.tweetImage}
-            source={require('../assets/tweet2.webp')}
-          />
-        )}
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            padding: 10,
-            justifyContent: 'space-between',
-          }}>
-          {icons.map((icon, index) => (
-            <IconFooter
-              key={index.toString()}
-              iconName={icon}
-              number={getNumberForIcon(index)}
-              filled={like}
-            />
-          ))}
+    <TouchableOpacity activeOpacity={0.7}>
+      <View style={styles.container}>
+        <View style={styles.avatarContainer}>
+          <Image style={styles.avatar} source={avatar} />
         </View>
-      </View>
 
-      <Icon name="more-vert" color="#fff" size={20} />
-    </View>
+        <View style={styles.tweetContent}>
+          {username && (
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.title}>{username}</Text>
+              <Text style={styles.titleAt}> @{username.toLowerCase()}</Text>
+              <Text style={styles.titleAt}> {timeElapsed}</Text>
+            </View>
+          )}
+          {tweetContentText && (
+            <Text style={styles.tweetContent}>{tweetContentText}</Text>
+          )}
+          {image && (
+            <Image
+              style={styles.tweetImage}
+              source={require('../assets/tweet2.webp')}
+            />
+          )}
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              padding: 10,
+              justifyContent: 'space-between',
+            }}>
+            {icons.map((icon, index) => (
+              <IconFooter
+                key={`${index}${icon}`}
+                iconName={icon}
+                number={getNumberForIcon(index)}
+                filled={like}
+              />
+            ))}
+          </View>
+        </View>
+
+        <Icon name="more-vert" color="#fff" size={20} />
+      </View>
+    </TouchableOpacity>
   );
 };
 
