@@ -1,65 +1,42 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {Home} from './src/pages/Home';
+import {NavigatorStackParams} from './src/navigator/StackNavigator';
+import {TabNavigator} from './src/navigator/TabNavigator';
+import {ImageDetailPage} from './src/pages/ImageDetailPage';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator<NavigatorStackParams>();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarIcon: ({focused, color, size}) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = 'home-outline';
-            } else if (route.name === 'Search') {
-              iconName = 'search-outline';
-            } else if (route.name === 'Notifications') {
-              iconName = 'notifications-outline';
-            } else {
-              iconName = 'mail-outline';
-            }
-
-            if (focused) {
-              iconName = iconName.replace('-outline', '');
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#192023',
           },
-          tabBarActiveTintColor: 'white',
-          tabBarInactiveTintColor: 'white',
-          tabBarBadgeStyle: {
-            color: '#fff',
-            backgroundColor: '#179CF0',
-            fontSize: 7.5,
-            fontWeight: 'bold',
-            maxWidth: 12,
-            maxHeight: 12,
-            lineHeight: 10,
-            marginTop: 5,
-            marginLeft: -2,
+          headerTintColor: 'white',
+          cardStyle: {
+            backgroundColor: '#192023',
           },
-          tabBarStyle: {
-            backgroundColor: '#1E2528',
-            borderTopColor: 'transparent',
-          },
-        })}>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Search" component={Home} />
-        <Tab.Screen
-          name="Notifications"
-          component={Home}
-          options={{tabBarBadge: 1}}
+        }}>
+        <Stack.Screen
+          name="Tabs"
+          component={TabNavigator}
+          options={{headerShown: false}}
         />
-        <Tab.Screen name="Messages" component={Home} />
-      </Tab.Navigator>
+        <Stack.Screen
+          name="ImageDetail"
+          component={ImageDetailPage}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: '#192023',
+              elevation: 0,
+            },
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
