@@ -82,7 +82,9 @@ export const TweetComponent: React.FC<TweetComponentProps> = ({
           }}>
           {tweet.images?.length &&
             tweet.images?.map(image => (
-              <TouchableWithoutFeedback onPress={() => onPress(image)}>
+              <TouchableWithoutFeedback
+                key={`${image}.Tweet.Image.${index}`}
+                onPress={() => onPress(image)}>
                 <Image
                   style={
                     tweet.images!.length > 1
@@ -104,7 +106,7 @@ export const TweetComponent: React.FC<TweetComponentProps> = ({
           }}>
           {icons.map((icon, i) => (
             <IconFooter
-              key={`${i}${icon}`}
+              key={`${i}${icon}.Tweet.${index}`}
               iconName={icon}
               number={getNumberForIcon(i)}
               filled={tweet.like}
