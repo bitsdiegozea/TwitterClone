@@ -1,4 +1,4 @@
-# Twitter Clon
+# Twitter Clone
 
 ### this project is a basic twitter clone with some visual features from twitter made in react native
 
