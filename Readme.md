@@ -11,5 +11,5 @@ npm run android
 
 ## Demo
 
-![demo asset](./md-assets/1.png)
-![demo asset](./md-assets/2.png)
+<img src="md-assets/1.png" style="height: 40%; width:45%;"/>
+<img src="md-assets/2.png" style="height: 40%; width:45%;"/>
